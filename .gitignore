@@ -1,0 +1,81 @@
+# Gitignore angepasst für React-Frontend und Flask-Backend
+
+# Allgemeine Ausnahmen
+.DS_Store
+Thumbs.db
+*.log
+.env
+
+### Backend - Flask ###
+/backend/__pycache__/
+/backend/*.py[cod]
+/backend/*.egg-info/
+/backend/.venv/
+/backend/env/
+/backend/venv/
+/backend/instance/
+/backend/.webassets-cache/
+/backend/*.sqlite3
+/backend/*.sqlite3-journal
+/backend/.pytest_cache/
+/backend/.mypy_cache/
+/backend/.coverage
+/backend/.tox/
+/backend/.nox/
+/backend/.hypothesis/
+/backend/coverage/
+/backend/htmlcov/
+/backend/build/
+/backend/dist/
+/backend/wheels/
+/backend/share/python-wheels/
+/backend/pip-log.txt
+/backend/pip-delete-this-directory.txt
+/backend/.ipynb_checkpoints
+/backend/.idea/
+/backend/.vscode/
+/backend/.ruff_cache/
+/backend/.pyre/
+/backend/cython_debug/
+/backend/.pdm.toml
+/backend/pyrightconfig.json
+
+### Frontend - React ###
+/frontend/node_modules/
+/frontend/.env.local
+/frontend/.env.development.local
+/frontend/.env.test.local
+/frontend/.env.production.local
+/frontend/build/
+/frontend/.parcel-cache/
+/frontend/.next/
+/frontend/out/
+/frontend/.nuxt/
+/frontend/.cache/
+/frontend/public/
+/frontend/.docusaurus/
+/frontend/web_modules/
+/frontend/dist/
+/frontend/.npm/
+/frontend/.eslintcache/
+/frontend/.stylelintcache/
+/frontend/coverage/
+/frontend/.nyc_output/
+/frontend/.yarn-integrity
+/frontend/.yarn/cache/
+/frontend/.yarn/unplugged/
+/frontend/.yarn/build-state.yml
+/frontend/.yarn/install-state.gz
+/frontend/pnp.*
+
+### Entwicklungsumgebungen - VSCode, PyCharm ###
+/.vscode/
+/.idea/
+
+# Lokale Entwicklungsdateien
+*.iml
+*.ipr
+*.iws
+
+# Lokale Historie für VSCode
+.history
