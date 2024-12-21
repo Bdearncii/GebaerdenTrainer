@@ -1,16 +1,11 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0);
-  const [username, setUsername] = useState('');  // Zustand für den Benutzernamen
-  const [password, setPassword] = useState('');  // Zustand für das Passwort
-  const [message, setMessage] = useState('');  // Zustand für die Antwort vom Server
-  const [error, setError] = useState('');  // Zustand für Fehlermeldungen
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
-  // Funktion zum Handhaben des Login-Versuchs
   const handleLogin = async (e) => {
     e.preventDefault();
 
@@ -30,34 +25,22 @@ function App() {
       const data = await response.json();
 
       if (response.ok) {
-        // Erfolgreiche Anmeldung, zeige Nachricht an
-        setMessage(data.message);
-        setError('');  // Fehlermeldung zurücksetzen
+        // Prüfe, ob eine Weiterleitungs-URL enthalten ist
+        if (data.redirect) {
+          window.location.href = data.redirect; // Weiterleitung zur angegebenen URL
+        }
       } else {
         // Fehler beim Login, zeige Fehlermeldung an
         setError(data.error);
-        setMessage('');  // Erfolgsnachricht zurücksetzen
       }
     } catch (err) {
       setError('An error occurred: ' + err.message);
-      setMessage('');  // Erfolgsnachricht zurücksetzen
     }
   };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-
-      <h1>Login to your account</h1>
-
-      {/* Login-Formular */}
+    <div>
+      <h1>Login</h1>
       <form onSubmit={handleLogin}>
         <div>
           <label htmlFor="username">Username</label>
@@ -81,23 +64,8 @@ function App() {
         </div>
         <button type="submit">Login</button>
       </form>
-
-      {/* Anzeige der Serverantwort */}
-      {message && <div className="message success">{message}</div>}
-      {error && <div className="message error">{error}</div>}
-
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+      {error && <div style={{ color: 'red' }}>{error}</div>}
+    </div>
   );
 }
 

@@ -1,6 +1,8 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 # Dummy user data
 users = {
@@ -20,7 +22,7 @@ def login():
 
     if username in users and users[username] == password:
         # Erfolgreicher Login, sende JSON-Antwort mit Erfolg
-        return jsonify({"message": f"Welcome, {username}!"}), 200
+        return jsonify({"redirect": "https://google.com"}), 200
     else:
         # Ungültige Anmeldedaten, sende Fehlerantwort
         return jsonify({"error": "Invalid username or password"}), 401
