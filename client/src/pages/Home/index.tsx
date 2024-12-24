@@ -5,13 +5,13 @@ function Home() {
     const navigate = useNavigate();
 
     const handleLoginClick = () => {
-        navigate("/login");
+        navigate("/signin");
     };
 
     return (
         <>
             <h1>Welcome to GebärdenTrainer!</h1>
-            <Button variant="contained" onClick={handleLoginClick}>Login</Button>
+            <Button variant="contained" onClick={handleLoginClick}>Sign In</Button>
         </>
     );
 }
