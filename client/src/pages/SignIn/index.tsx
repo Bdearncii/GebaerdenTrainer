@@ -2,28 +2,58 @@ import { AppProvider } from '@toolpad/core/AppProvider';
 import { SignInPage, type AuthProvider } from '@toolpad/core/SignInPage';
 import { useTheme } from '@mui/material/styles';
 import imageLogo from '../../assets/logo_horizontal.png';
+import axios from 'axios';
+
+const handleLogin = async (username: string, password: string) => {
+  try {
+    const response = await axios.post('http://localhost:5000/signin', {
+      username,
+      password,
+    });
+
+    if (response.status === 201) {
+      console.log(response.data.message); // Success message
+      alert('Registration successful!');
+    }
+  } catch (error: any) {
+    if (error.response) {
+      console.error(error.response.data.error); // Display server error
+      alert(`Error: ${error.response.data.error}`);
+    } else {
+      console.error('Login failed');
+      alert('Login failed. Please try again.');
+    }
+  }
+};
 
 const providers = [
   { id: 'google', name: 'Google' },
-  { id: 'credentials', name: 'Credentials' }];
+  { id: 'credentials', name: 'Credentials' },
+];
+
 const BRANDING = {
   logo: (
     <img
-      src= {imageLogo}
+      src={imageLogo}
       alt="GebärdenTrainer Logo"
       style={{ height: 70 }}
     />
-  )
+  ),
 };
 
-const signIn: (provider: AuthProvider) => void = async (provider) => {
-  const promise = new Promise<void>((resolve) => {
-    setTimeout(() => {
-      console.log(`Sign in with ${provider.id}`);
-      resolve();
-    }, 500);
-  });
-  return promise;
+const signIn: (provider: AuthProvider, formData: FormData) => void = async (
+  provider,
+  formData,
+) => {
+  if (provider.id === 'credentials' && formData) {
+    const username = formData.get('email') as string;
+    const password = formData.get('password') as string;
+
+    // Call the backend to register the user
+    await handleLogin(username, password);
+  } else {
+    console.log(`Sign in with ${provider.id}`);
+  }
 };
 
 export default function SignIn() {
@@ -31,22 +61,21 @@ export default function SignIn() {
   return (
     <AppProvider branding={BRANDING} theme={theme}>
       <SignInPage
-
         signIn={signIn}
         providers={providers}
-        slotProps={{ emailField: { autoFocus: false },
-        submitButton: {
-          sx: {
-            backgroundColor: 'green',
-            '&:hover': {
-              backgroundColor: 'darkgreen'
+        slotProps={{
+          emailField: { autoFocus: false },
+          submitButton: {
+            sx: {
+              backgroundColor: 'green',
+              '&:hover': {
+                backgroundColor: 'darkgreen',
+              },
+              marginTop: 2,
             },
-            marginTop: 2,
-          }
-        }
-      }}
-      /> 
-      
-      </AppProvider>
+          },
+        }}
+      />
+    </AppProvider>
   );
 }
