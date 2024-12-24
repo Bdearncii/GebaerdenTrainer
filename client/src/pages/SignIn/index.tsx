@@ -26,7 +26,7 @@ const signIn: (provider: AuthProvider) => void = async (provider) => {
   return promise;
 };
 
-export default function Login() {
+export default function SignIn() {
   const theme = useTheme();
   return (
     <AppProvider branding={BRANDING} theme={theme}>
