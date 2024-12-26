@@ -1,0 +1,36 @@
+
+
+Flask Backend Setup:
+https://flask.palletsprojects.com/en/stable/installation/#virtual-environments
+
+Integration mit Frontend (React): 
+https://blog.miguelgrinberg.com/post/how-to-create-a-react--flask-project
+
+https://dev.to/nagatodev/how-to-connect-flask-to-reactjs-1k8i
+
+1) Terminal öffnen und im Verzeichnis "server" wechseln
+
+2) Danach führe die folgenden zwei Befehle aus, um ein "virtual environment" zu erstellen:
+
+python -m venv env
+env/Scripts/activate
+
+3) Falls eine Fehlermeldung auftritt, öffne Windows Powershell im Administrator Modus und 
+führe folgenden Befehl aus:
+
+Set-ExecutionPolicy RemoteSigned   
+Schreibe danach den Buchstabe: y
+
+4) Jetzt könnt ihr Flask installieren
+
+pip install Flask
+
+5) Danach wird folgendes Befehl ausgeführt, um alle dependencies zu installieren:
+
+pip install -r requirements.txt   
+
+6) Mit dem folgenden Befehl könnt ihr Flask starten:
+
+flask --debug run
+
+    

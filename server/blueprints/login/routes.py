@@ -2,7 +2,6 @@ from flask import Blueprint, jsonify, request
 from flask_cors import CORS
 
 login_bp = Blueprint('login', __name__)
-CORS(login_bp, resources={r"/signin": {"origins": "*"}})
 
 users = []
 

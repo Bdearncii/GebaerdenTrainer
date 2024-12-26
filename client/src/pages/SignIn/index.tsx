@@ -12,12 +12,12 @@ const handleLogin = async (username: string, password: string) => {
     });
 
     if (response.status === 201) {
-      console.log(response.data.message); // Success message
+      console.log(response.data.message);
       alert('Registration successful!');
     }
   } catch (error: any) {
     if (error.response) {
-      console.error(error.response.data.error); // Display server error
+      console.error(error.response.data.error);
       alert(`Error: ${error.response.data.error}`);
     } else {
       console.error('Login failed');
@@ -49,7 +49,6 @@ const signIn: (provider: AuthProvider, formData: FormData) => void = async (
     const username = formData.get('email') as string;
     const password = formData.get('password') as string;
 
-    // Call the backend to register the user
     await handleLogin(username, password);
   } else {
     console.log(`Sign in with ${provider.id}`);
