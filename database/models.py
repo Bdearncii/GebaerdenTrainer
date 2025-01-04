@@ -1,4 +1,4 @@
-from db import connect_db
+from .db import connect_db
 
 def add_user(username,email,password):
 

@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from blueprints.login.routes import login_bp
-from models import add_user, get_user_by_username, add_progress, get_progress_by_user, add_video, get_video_by_description
+from database.models import add_user, get_user_by_username, add_progress, get_progress_by_user, add_video, get_video_by_description
 
 app = Flask(__name__)
 CORS(app, supports_credentials=True)
