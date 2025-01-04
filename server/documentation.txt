@@ -8,29 +8,33 @@ https://blog.miguelgrinberg.com/post/how-to-create-a-react--flask-project
 
 https://dev.to/nagatodev/how-to-connect-flask-to-reactjs-1k8i
 
-1) Terminal öffnen und im Verzeichnis "server" wechseln
+1) Terminal öffnen und ins Verzeichnis "server" wechseln
 
 2) Danach führe die folgenden zwei Befehle aus, um ein "virtual environment" zu erstellen:
 
-python -m venv env
-env/Scripts/activate
+python -m venv venv
+venv\Scripts\activate
+(auf '\', da '/'  einen Fehler auslösen würde)
 
-3) Falls eine Fehlermeldung auftritt, öffne Windows Powershell im Administrator Modus und 
+3) Falls eine Fehlermeldung auftritt, verwende "command prompt" statt Powershell.
+In VSC beim Terminal rechts von dem + auf das Dropdown-Menü gehen und "command prompt" auswählen.
+
+(3 Alternativ) Falls eine Fehlermeldung auftritt, öffne Windows Powershell im Administratormodus und 
 führe folgenden Befehl aus:
 
 Set-ExecutionPolicy RemoteSigned   
-Schreibe danach den Buchstabe: y
+Schreibe danach den Buchstaben 'y'
 
-4) Jetzt könnt ihr Flask installieren
 
-pip install Flask
 
-5) Danach wird folgendes Befehl ausgeführt, um alle dependencies zu installieren:
+4) Danach wird folgender Befehl ausgeführt, um alle Dependencies zu installieren:
 
 pip install -r requirements.txt   
 
-6) Mit dem folgenden Befehl könnt ihr Flask starten:
+5) Mit dem folgenden Befehl könnt ihr Flask starten:
 
 flask --debug run
 
-    
+
+(6) Falls neue Abhängigkeiten hinzugefügt wurden, aktualisiere requirements.txt mit folgendem Befehl:
+pip freeze > requirements.txt

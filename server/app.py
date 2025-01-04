@@ -1,6 +1,10 @@
+import sys
+import os
+#Working directory wird auf den Übergeordnetenordner von Server geändert.
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from blueprints.login.routes import login_bp
+from server.blueprints.login.routes import login_bp
 from database.models import add_user, get_user_by_username, add_progress, get_progress_by_user, add_video, get_video_by_description
 
 app = Flask(__name__)

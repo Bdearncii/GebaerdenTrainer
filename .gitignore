@@ -30,13 +30,14 @@ Thumbs.db
 *.log
 .env
 
+### allgemein ###
+**/__pycache__/
+**/venv/
+
 ### server - Flask ###
-/server/__pycache__/
 /server/*.py[cod]
 /server/*.egg-info/
-/server/.venv/
 /server/env/
-/server/venv/
 /server/instance/
 /server/.webassets-cache/
 /server/*.sqlite3
