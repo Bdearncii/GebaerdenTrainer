@@ -1,18 +1,27 @@
+from contextlib import nullcontext
+
 from flask import Blueprint, jsonify, request
 from flask_cors import CORS
 
 login_bp = Blueprint('login', __name__)
 
-users = []
+users = {}
 
-# Todo: Logik verbessern + Firebase Integration
-@login_bp.route('/signin', methods=['POST'])
-def login():
-    data = request.json
+# Todo: Firebase Integration
+@login_bp.route('/signup', methods=['POST'])
+def signup():
+    # Empfange JSON-Daten vom Client
+    data = request.get_json()
+
+    # Benutzername und Passwort aus dem Request erhalten
     username = data.get('username')
     password = data.get('password')
 
-    print("Username:", username)
-    print("Password:", password)
+    if username in users:
+        # Benutzername exestiert bereits
+        return jsonify({"error": "Username already exists"}), 409
 
-    return jsonify({"message": "User registered successfully"}), 201
+    # Registrierung erfolgreich
+    users[username] = password
+    return jsonify({"message": "Successfull SignUp"}), 201
+
