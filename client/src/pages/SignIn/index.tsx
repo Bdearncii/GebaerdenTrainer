@@ -6,12 +6,12 @@ import axios from 'axios';
 
 const handleLogin = async (username: string, password: string) => {
   try {
-    const response = await axios.post('http://localhost:5000/signup', {
+    const response = await axios.post('http://localhost:5000/login', {
       username,
       password,
     });
 
-    if (response.status === 201) {
+    if (response.status === 202) {
       console.log(response.data.message);
       alert('Registration successful!');
     }

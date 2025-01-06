@@ -4,7 +4,7 @@ import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from server.blueprints.signup.routes import signup_bp
+from server.blueprints.usermanagement.routes import signup_bp, login_bp
 from database.models import add_user, get_user_by_username, add_progress, get_progress_by_user, add_video, get_video_by_description
 
 app = Flask(__name__)
@@ -12,6 +12,7 @@ CORS(app, supports_credentials=True)
 
 
 app.register_blueprint(signup_bp)
+app.register_blueprint(login_bp)
 
 @app.route('/add_user', methods=['POST'])
 def add_user_route():
