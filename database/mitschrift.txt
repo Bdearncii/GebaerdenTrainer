@@ -1,6 +1,0 @@
-MySql-Connector wurde installiert
-
-cursor --> verwendet man fpr abfragen und um ergebnisse abzuholen
-
-model.py ist zur Definition der Method zum Hinzufügen und Abrufen der Daten da.
- 
