@@ -17,9 +17,10 @@ venv\Scripts\activate
 (auf '\', da '/'  einen Fehler auslösen würde)
 
 3) Falls eine Fehlermeldung auftritt, verwende "command prompt" statt Powershell.
+
 In VSC beim Terminal rechts von dem + auf das Dropdown-Menü gehen und "command prompt" auswählen.
 
-(3 Alternativ) Falls eine Fehlermeldung auftritt, öffne Windows Powershell im Administratormodus und 
+3 Alternativ) Falls eine Fehlermeldung auftritt, öffne Windows Powershell im Administratormodus und 
 führe folgenden Befehl aus:
 
 Set-ExecutionPolicy RemoteSigned   
@@ -36,5 +37,6 @@ pip install -r requirements.txt
 flask --debug run
 
 
-(6) Falls neue Abhängigkeiten hinzugefügt wurden, aktualisiere requirements.txt mit folgendem Befehl:
-pip freeze > requirements.txt
+6) Falls neue Abhängigkeiten hinzugefügt wurden, aktualisiere requirements.txt
+
+Nur dei Abhängigkeiten einfügen, die manuell Installiert wurden. (Python macht dependency injection)
