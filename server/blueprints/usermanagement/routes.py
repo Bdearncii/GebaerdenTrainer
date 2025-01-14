@@ -57,7 +57,7 @@ def login():
     user = user_ref.get(username)
 
     #Direkter Vergleich in der Datenbank
-    if data.username == user['username']:
+    if username == user['username'] and password == user['password']:
         return jsonify({"message": f"Welcome, {username}!"}), 202
     else:
          return jsonify({"error": "Invalid username or password"}), 401
