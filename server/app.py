@@ -8,8 +8,7 @@ from flask_cors import CORS
 from server.blueprints.usermanagement.routes import signup_bp, login_bp
 from firebase_admin import db, credentials
 
-cred = credentials.Certificate("credentials.json") # Credentials der Datenbank
-firebase_admin.initialize_app(cred, {"databaseURL": "https://gebaerdentrainer-default-rtdb.europe-west1.firebasedatabase.app"}) # Initializierung der Datenbank
+cred = credentials.Certificate('credentials.json') # Credentials der Datenbank
 ref = db.reference('/')
 
 app = Flask(__name__)
@@ -29,6 +28,13 @@ def add_user_route():
     user_ref.push(data)
     return jsonify({"message": "User added successfully"}), 201 
 
+
+# @app.route('/get_user/<id>', methods=['GET'])
+# def get_user_route():
+#      params = request.get_json()
+#      user_ref = db.reference('users')
+#      if params.username == user_ref.get():
+#             if user_ref
 
 
 

@@ -1,5 +1,11 @@
 
+import firebase_admin
 from flask import Blueprint, jsonify, request
+from firebase_admin import db, credentials
+
+cred = credentials.Certificate("credentials.json") # Credentials der Datenbank
+firebase_admin.initialize_app(cred, {"databaseURL": "https://gebaerdentrainer-default-rtdb.europe-west1.firebasedatabase.app"}) # Initializierung der Datenbank
+ref = db.reference('/')
 
 signup_bp = Blueprint('signup', __name__)
 login_bp = Blueprint('login', __name__)
@@ -11,6 +17,10 @@ users = {}
 def signup():
     # Empfange JSON-Daten vom Client
     data = request.get_json()
+
+    #Referenz auf die Datenbank und explizit auf die User-Tabelle
+    user_ref = db.reference('users')
+
 
     # Benutzername und Passwort aus dem Request erhalten
     email=data.get('email')
@@ -24,6 +34,10 @@ def signup():
 
     # Registrierung erfolgreich
     users[username] = password
+
+    #Hinzufügen des Users in die Datenbank
+    dbdata={"username":username,"password":password}
+    user_ref.push(data)
     return jsonify({"message": "Successfull SignUp"}), 201
 
 # Todo: Firebase Integration
@@ -32,9 +46,22 @@ def login():
     # Empfange JSON-Daten vom Client
     data = request.get_json()
 
+    #Referenz von Datenbank
+    user_ref = db.reference('users')
+
+
     # Überprüfen, ob Benutzername und Passwort im Request enthalten sind
     username = data.get('username')
     password = data.get('password')
+
+    user = user_ref.get(username)
+
+    #Direkter Vergleich in der Datenbank
+    if data.username == user['username']:
+        return jsonify({"message": f"Welcome, {username}!"}), 202
+    else:
+         return jsonify({"error": "Invalid username or password"}), 401
+
 
     if username in users and users[username] == password:
         # Erfolgreicher Login, sende JSON-Antwort mit Erfolg
