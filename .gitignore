@@ -23,6 +23,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+*.vercel
 
 # Allgemeine Ausnahmen
 .DS_Store
