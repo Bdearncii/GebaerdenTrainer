@@ -7,6 +7,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from server.blueprints.usermanagement.routes import signup_bp, login_bp
 from firebase_admin import db, credentials
+from vercel import VercelWSGI
 
 cred = credentials.Certificate('credentials.json') # Credentials der Datenbank
 ref = db.reference('/')
@@ -17,6 +18,8 @@ CORS(app, supports_credentials=True)
 
 app.register_blueprint(signup_bp)
 app.register_blueprint(login_bp)
+
+handler = VercelWSGI(app)
 
 @app.route('/add_user', methods=['POST'])
 def add_user_route():
