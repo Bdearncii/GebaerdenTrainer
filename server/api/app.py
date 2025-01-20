@@ -1,11 +1,9 @@
 import sys
 import os
 import firebase_admin
-#Working directory wird auf den Übergeordnetenordner von Server geändert.
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from server.blueprints.usermanagement.routes import signup_bp, login_bp
+from blueprints.usermanagement.routes import signup_bp, login_bp
 from firebase_admin import db, credentials
 
 cred = credentials.Certificate('credentials.json') # Credentials der Datenbank
