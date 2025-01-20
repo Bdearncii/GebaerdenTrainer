@@ -7,14 +7,14 @@
       "config": { "distDir": "client/dist" }
     },
     {
-      "src": "server/index.py",
+      "src": "server/app.py",
       "use": "@vercel/python"
     }
   ],
   "routes": [
     {
-      "src": "/api/(.*)",
-      "dest": "server/index.py"
+      "src": "/server/(.*)",
+      "dest": "server/app.py"
     },
     {
       "src": "/(.*)",
