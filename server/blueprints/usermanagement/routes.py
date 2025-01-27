@@ -28,19 +28,23 @@ def signup():
     username = data.get('username')
     password = data.get('password')
 
-    hashed = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
+    password_hashed = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
 
     if username in users:
         # Benutzername exestiert bereits
         return jsonify({"error": "User already exists"}), 409
 
     # Registrierung erfolgreich
-    users[username] = password
 
     # Hinzufügen des Users in die Datenbank
-    dbdata = {"username": username, "password": hashed}
+    dbdata = {"username": username, "password": password_hashed}
     user_ref.push(data)
     return jsonify({"message": "Successfull SignUp"}), 201
+
+
+    # Code für tests ohne DB-Abhängigkeit
+    # users[username] = password_hashed
+    # return jsonify({"message": "Successfull SignUp"}), 201
 
 
 # Todo: Firebase Integration
@@ -59,12 +63,13 @@ def login():
     user = user_ref.get(username)
 
     # Direkter Vergleich in der Datenbank
-    if username == user['username'] and bcrypt.checkpw(password, user['password']):
+    if username == user['username'] and bcrypt.checkpw(password.encode('utf-8'), user['password']):
         return jsonify({"message": f"Welcome, {username}!"}), 202
     else:
         return jsonify({"error": "Invalid username or password"}), 401
 
-    # if username in users and users[username] == password:
+    # Code für tests ohne DB-Abhängigkeit
+    # if username in users and bcrypt.checkpw(password.encode('utf-8'), users[username]):
     #     # Erfolgreicher Login, sende JSON-Antwort mit Erfolg
     #     return jsonify({"message": f"Welcome, {username}!"}), 202
     # else:
