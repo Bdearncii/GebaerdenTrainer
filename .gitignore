@@ -29,7 +29,6 @@ dist-ssr
 .DS_Store
 Thumbs.db
 *.log
-.env
 
 ### allgemein ###
 **/__pycache__/
