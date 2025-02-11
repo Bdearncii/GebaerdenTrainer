@@ -1,12 +1,18 @@
 import sys
 import os
+import json
 import firebase_admin
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from server.blueprints.usermanagement.routes import signup_bp, login_bp
 from firebase_admin import db, credentials
 
-cred = credentials.Certificate('credentials.json') # Credentials der Datenbank
+with open("FIREBASE_CREDENTIALS.json", "r") as file:
+     FIREBASE_CREDENTIALS = json.load(file)
+
+
+
+cred = credentials.Certificate(FIREBASE_CREDENTIALS) # Credentials der Datenbank
 ref = db.reference('/')
 
 app = Flask(__name__)

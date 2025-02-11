@@ -2,8 +2,13 @@ import firebase_admin
 from flask import Blueprint, jsonify, request
 from firebase_admin import db, credentials
 import bcrypt
+import os, json
 
-cred = credentials.Certificate("credentials.json")  # Credentials der Datenbank
+with open(".env.json", "r") as file:
+    config = json.load(file)
+
+
+cred = credentials.Certificate(config)  # Credentials der Datenbank
 firebase_admin.initialize_app(cred, {
     "databaseURL": "https://gebaerdentrainer-default-rtdb.europe-west1.firebasedatabase.app"})  # Initializierung der Datenbank
 ref = db.reference('/')

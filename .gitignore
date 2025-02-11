@@ -104,3 +104,6 @@ Thumbs.db
 
 # Lokale Historie für VSCode
 .history
+
+# Firebase-Credentials
+.env.json
