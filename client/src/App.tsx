@@ -1,15 +1,29 @@
-import { Route, Routes } from 'react-router-dom';
-import Home from "./pages/Home";
-import SignIn from "./pages/SignIn"
+import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
 
+import RootLayout from './layouts/Root-Layout';
+import AuthLayout from './layouts/Auth-Layout';
+
+import Home from './pages/Home';
+import SignUp from './pages/SignUp';
+import Login from './pages/Login';
 
 function App() {
-  return (
-    <Routes>
-      <Route index element={<Home />} />
-      <Route path="/signin" element={<SignIn />} />
-    </Routes>
-  );
-};
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <>
+        <Route path='/' element={<RootLayout />}>
+          <Route index element={<Home />} />
+        </Route>
 
-export default App
+        <Route element={<AuthLayout />}>
+          <Route path='/sign-up' element={<SignUp />} />
+          <Route path='/login' element={<Login />} />
+        </Route>
+      </>
+    )
+  );
+
+  return <RouterProvider router={router} />;
+}
+
+export default App;
