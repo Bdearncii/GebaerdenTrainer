@@ -50,6 +50,7 @@ const FormContainer = styled(Box)({
 const SignUpPage: React.FC = () => {
     const [formData, setFormData] = useState({
         email: "",
+        username: "",
         password: "",
         retypePassword: "",
     });
@@ -117,6 +118,18 @@ const SignUpPage: React.FC = () => {
                     >
                         Sign Up
                     </Typography>
+
+                    <TextField
+                        label="Username"
+                        name="username"
+                        value={formData.username}
+                        onChange={handleChange}
+                        error={!!errors.username}
+                        helperText={errors.username}
+                        fullWidth
+                        margin="normal"
+                        variant="outlined"
+                    />
 
                     <TextField
                         label="Email"
