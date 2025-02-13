@@ -33,6 +33,7 @@ Thumbs.db
 ### allgemein ###
 **/__pycache__/
 **/venv/
+**/.env/
 
 ### server - Flask ###
 /server/*.py[cod]
