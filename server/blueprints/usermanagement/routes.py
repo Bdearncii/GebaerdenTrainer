@@ -4,14 +4,23 @@ from firebase_admin import db, credentials
 import bcrypt
 import os, json
 
-with open(".env.json", "r") as file:
-    config = json.load(file)
+
+#cred = credentials.Certificate(config)  # Credentials der Datenbank
+
+#load_dotenv(dotenv_path="C:\Schule\2024-2025\SYP\Entwicklungsumgebung\server\venv\.env")
+
+credentialsAlsString = os.getenv("FIREBASE_CREDENTIALS")
+
+if credentialsAlsString:
+    credentialsAlsJson = json.loads(credentialsAlsString)
+    credentials.Certificate(credentialsAlsJson) # Credentials der Datenbank
+    ref = db.reference('/')
 
 
-cred = credentials.Certificate(config)  # Credentials der Datenbank
-firebase_admin.initialize_app(cred, {
+firebase_admin.initialize_app(credentialsAlsString, {
     "databaseURL": "https://gebaerdentrainer-default-rtdb.europe-west1.firebasedatabase.app"})  # Initializierung der Datenbank
-ref = db.reference('/')
+
+print(credentialsAlsString)
 
 signup_bp = Blueprint('signup', __name__)
 login_bp = Blueprint('login', __name__)

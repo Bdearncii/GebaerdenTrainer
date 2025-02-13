@@ -7,13 +7,14 @@ from flask_cors import CORS
 from server.blueprints.usermanagement.routes import signup_bp, login_bp
 from firebase_admin import db, credentials
 
-with open(".env.json", "r") as file:
-     FIREBASE_CREDENTIALS = json.load(file)
 
 
+credentialsAlsString = os.getenv("FIREBASE_CREDENTIALS")
 
-cred = credentials.Certificate(FIREBASE_CREDENTIALS) # Credentials der Datenbank
-ref = db.reference('/')
+if credentialsAlsString:
+    credentialsAlsJson = json.loads(credentialsAlsString)
+    credentials.Certificate(credentialsAlsJson) # Credentials der Datenbank
+    ref = db.reference('/')
 
 app = Flask(__name__)
 CORS(app, supports_credentials=True)
