@@ -10,7 +10,7 @@ cred = credentials.Certificate('credentials.json') # Credentials der Datenbank
 ref = db.reference('/')
 
 app = Flask(__name__)
-CORS(app, supports_credentials=True)
+CORS(app, resources={r"/*": {"origins": ["http://localhost:5173"]}})
 
 
 app.register_blueprint(signup_bp)
