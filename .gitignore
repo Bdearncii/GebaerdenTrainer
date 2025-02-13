@@ -29,11 +29,9 @@ dist-ssr
 .DS_Store
 Thumbs.db
 *.log
-
-### allgemein ###
+*.env
 **/__pycache__/
 **/venv/
-**/.env/
 
 ### server - Flask ###
 /server/*.py[cod]
